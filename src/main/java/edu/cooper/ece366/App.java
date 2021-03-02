@@ -20,6 +20,6 @@ public class App {
 
     get("/ping", (req, res) -> "OK");
     get("/user/:userId", (req, res) -> handler.getUser(req), gson::toJson);
-    // get("/user/:userId/feed", (req, res) -> handler.getFeed(req), gson::toJson);
+
   }
 }
