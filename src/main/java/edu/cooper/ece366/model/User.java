@@ -10,4 +10,10 @@ public interface User {
 
   String name();
 
+  enum account_type {
+    Company,
+    Member,
+    Admin
+  }
+
 }
