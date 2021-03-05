@@ -16,14 +16,17 @@ public class UserStoreImpl implements UserStore {
                 new UserBuilder()
                     .id("1")
                     .name("John S.")
+                    .location("New York")
                     .build(),
                 new UserBuilder()
                     .id("2")
                     .name("Mary S.")
+                    .location("New Jersey")
                     .build(),
                 new UserBuilder()
                     .id("3")
                     .name("Louis L.")
+                    .location("New York")
                     .build())
             .stream()
             .collect(Collectors.toMap(User::id, Function.identity()));

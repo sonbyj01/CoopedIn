@@ -10,6 +10,8 @@ public interface User {
 
   String name();
 
+  String location();
+
   enum account_type {
     Company,
     Member,
