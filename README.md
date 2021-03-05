@@ -1,7 +1,9 @@
 # CoopedIn
 
 **Company Name:** CoopedIn
+
 **Engineering Team**
+
 Min Cheng, Arthur Skok, Henry Son, Ernesto Colon 
 
 
