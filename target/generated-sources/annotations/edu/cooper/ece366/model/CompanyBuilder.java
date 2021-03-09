@@ -1,25 +1,32 @@
 package edu.cooper.ece366.model;
 
 import io.norberg.automatter.AutoMatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated("io.norberg.automatter.processor.AutoMatterProcessor")
 public final class CompanyBuilder {
   private String id;
 
-  private String name;
+  private List<String> name;
 
   public CompanyBuilder() {
   }
 
   private CompanyBuilder(Company v) {
     this.id = v.id();
-    this.name = v.name();
+    List<String> _name = v.name();
+    this.name = (_name == null) ? null : new ArrayList<String>(_name);
   }
 
   private CompanyBuilder(CompanyBuilder v) {
     this.id = v.id;
-    this.name = v.name;
+    this.name = (v.name == null) ? null : new ArrayList<String>(v.name);
   }
 
   public String id() {
@@ -34,20 +41,67 @@ public final class CompanyBuilder {
     return this;
   }
 
-  public String name() {
+  public List<String> name() {
+    if (this.name == null) {
+      this.name = new ArrayList<String>();
+    }
     return name;
   }
 
-  public CompanyBuilder name(String name) {
+  public CompanyBuilder name(List<? extends String> name) {
+    return name((Collection<? extends String>) name);
+  }
+
+  public CompanyBuilder name(Collection<? extends String> name) {
     if (name == null) {
       throw new NullPointerException("name");
     }
-    this.name = name;
+    for (String item : name) {
+      if (item == null) {
+        throw new NullPointerException("name: null item");
+      }
+    }
+    this.name = new ArrayList<String>(name);
     return this;
   }
 
+  public CompanyBuilder name(Iterable<? extends String> name) {
+    if (name == null) {
+      throw new NullPointerException("name");
+    }
+    if (name instanceof Collection) {
+      return name((Collection<? extends String>) name);
+    }
+    return name(name.iterator());
+  }
+
+  public CompanyBuilder name(Iterator<? extends String> name) {
+    if (name == null) {
+      throw new NullPointerException("name");
+    }
+    this.name = new ArrayList<String>();
+    while (name.hasNext()) {
+      String item = name.next();
+      if (item == null) {
+        throw new NullPointerException("name: null item");
+      }
+      this.name.add(item);
+    }
+    return this;
+  }
+
+  @SafeVarargs
+  @SuppressWarnings("varargs")
+  public final CompanyBuilder name(String... name) {
+    if (name == null) {
+      throw new NullPointerException("name");
+    }
+    return name(Arrays.asList(name));
+  }
+
   public Company build() {
-    return new Value(id, name);
+    List<String> _name = (name != null) ? Collections.unmodifiableList(new ArrayList<String>(name)) : Collections.<String>emptyList();
+    return new Value(id, _name);
   }
 
   public static CompanyBuilder from(Company v) {
@@ -61,17 +115,14 @@ public final class CompanyBuilder {
   private static final class Value implements Company {
     private final String id;
 
-    private final String name;
+    private final List<String> name;
 
-    private Value(@AutoMatter.Field("id") String id, @AutoMatter.Field("name") String name) {
+    private Value(@AutoMatter.Field("id") String id, @AutoMatter.Field("name") List<String> name) {
       if (id == null) {
         throw new NullPointerException("id");
       }
-      if (name == null) {
-        throw new NullPointerException("name");
-      }
       this.id = id;
-      this.name = name;
+      this.name = (name != null) ? name : Collections.<String>emptyList();
     }
 
     @AutoMatter.Field
@@ -82,7 +133,7 @@ public final class CompanyBuilder {
 
     @AutoMatter.Field
     @Override
-    public String name() {
+    public List<String> name() {
       return name;
     }
 

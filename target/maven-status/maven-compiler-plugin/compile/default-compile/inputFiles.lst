@@ -1,13 +1,15 @@
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\App.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Company.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\User.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\JobStore.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\service\FeedServiceImpl.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Job.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Feed.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\handler\Handler.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\JobStoreImpl.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\UserStoreImpl.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\UserStore.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\JobPosts.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\service\FeedService.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\model\User.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\store\CompanyStore.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\store\JobStore.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\store\JobStoreImpl.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\model\Job.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\service\FeedService.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\model\JobPosts.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\service\FeedServiceImpl.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\store\UserStore.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\store\UserStoreImpl.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\store\CompanyStoreImpl.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\model\Company.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\model\Feed.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\App.java
+C:\Users\EllaM\Documents\Github\CoopedIn\src\main\java\edu\cooper\ece366\handler\Handler.java
