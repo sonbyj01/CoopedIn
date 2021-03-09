@@ -32,8 +32,26 @@ Append database that Admin manages with specific jobs/positions for their compan
 Manage and update the status of the applications received by the company
 Manage the positions that are open in the company (view/add/delete/edit the positions listed)
 
-
 #### Stretch Requirements (at least one)
 For the users, they can get positions recommendation feed based on their search history, their work experience, and their target fields
 Direct message functions
 Web browser based interface first → mobile browsing
+
+03.08.21 Sample outputs
+curl -s localhost:4567/user/1
+{"id":"1","name":"John S.","location":["NY"]}
+
+curl -s localhost:4567/user/2
+{"id":"2","name":"Mary S.","location":["NJ"]}
+
+curl -s localhost:4567/user/3
+{"id":"3","name":"Louis L.","location":["NY"]}
+
+curl -s localhost:4567/user/1/feed
+{"shelves":[{"shelfItems":[{"available":true,"jobTitle":"R\u0026D Engineer","company":"Adobe","location":"NY","jobType":"FullTime"}]}]}
+
+curl -s localhost:4567/user/2/feed
+{"shelves":[{"shelfItems":[{"available":true,"jobTitle":"Lawyer","company":"Aetna","location":"NJ","jobType":"FullTime"}]}]}
+
+curl -s localhost:4567/user/3/feed
+{"shelves":[{"shelfItems":[{"available":true,"jobTitle":"R\u0026D Engineer","company":"Adobe","location":"NY","jobType":"FullTime"}]}]}
