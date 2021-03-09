@@ -2,7 +2,6 @@ C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Ar
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Company.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\User.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\JobStore.java
-C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Shelf.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\service\FeedServiceImpl.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Job.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\Feed.java
@@ -10,4 +9,5 @@ C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Ar
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\JobStoreImpl.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\UserStoreImpl.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\store\UserStore.java
+C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\model\JobPosts.java
 C:\Users\ernes\OneDrive - The Cooper Union for the Advancement of Science and Art\Software_Design\CoopedIn_Remote\src\main\java\edu\cooper\ece366\service\FeedService.java

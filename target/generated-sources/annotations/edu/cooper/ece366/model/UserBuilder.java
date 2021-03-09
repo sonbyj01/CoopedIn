@@ -15,7 +15,7 @@ public final class UserBuilder {
 
   private String name;
 
-  private List<Job.Locations> location;
+  private List<String> location;
 
   public UserBuilder() {
   }
@@ -23,14 +23,14 @@ public final class UserBuilder {
   private UserBuilder(User v) {
     this.id = v.id();
     this.name = v.name();
-    List<Job.Locations> _location = v.location();
-    this.location = (_location == null) ? null : new ArrayList<Job.Locations>(_location);
+    List<String> _location = v.location();
+    this.location = (_location == null) ? null : new ArrayList<String>(_location);
   }
 
   private UserBuilder(UserBuilder v) {
     this.id = v.id;
     this.name = v.name;
-    this.location = (v.location == null) ? null : new ArrayList<Job.Locations>(v.location);
+    this.location = (v.location == null) ? null : new ArrayList<String>(v.location);
   }
 
   public String id() {
@@ -57,47 +57,47 @@ public final class UserBuilder {
     return this;
   }
 
-  public List<Job.Locations> location() {
+  public List<String> location() {
     if (this.location == null) {
-      this.location = new ArrayList<Job.Locations>();
+      this.location = new ArrayList<String>();
     }
     return location;
   }
 
-  public UserBuilder location(List<? extends Job.Locations> location) {
-    return location((Collection<? extends Job.Locations>) location);
+  public UserBuilder location(List<? extends String> location) {
+    return location((Collection<? extends String>) location);
   }
 
-  public UserBuilder location(Collection<? extends Job.Locations> location) {
+  public UserBuilder location(Collection<? extends String> location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
-    for (Job.Locations item : location) {
+    for (String item : location) {
       if (item == null) {
         throw new NullPointerException("location: null item");
       }
     }
-    this.location = new ArrayList<Job.Locations>(location);
+    this.location = new ArrayList<String>(location);
     return this;
   }
 
-  public UserBuilder location(Iterable<? extends Job.Locations> location) {
+  public UserBuilder location(Iterable<? extends String> location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
     if (location instanceof Collection) {
-      return location((Collection<? extends Job.Locations>) location);
+      return location((Collection<? extends String>) location);
     }
     return location(location.iterator());
   }
 
-  public UserBuilder location(Iterator<? extends Job.Locations> location) {
+  public UserBuilder location(Iterator<? extends String> location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
-    this.location = new ArrayList<Job.Locations>();
+    this.location = new ArrayList<String>();
     while (location.hasNext()) {
-      Job.Locations item = location.next();
+      String item = location.next();
       if (item == null) {
         throw new NullPointerException("location: null item");
       }
@@ -108,7 +108,7 @@ public final class UserBuilder {
 
   @SafeVarargs
   @SuppressWarnings("varargs")
-  public final UserBuilder location(Job.Locations... location) {
+  public final UserBuilder location(String... location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
@@ -116,7 +116,7 @@ public final class UserBuilder {
   }
 
   public User build() {
-    List<Job.Locations> _location = (location != null) ? Collections.unmodifiableList(new ArrayList<Job.Locations>(location)) : Collections.<Job.Locations>emptyList();
+    List<String> _location = (location != null) ? Collections.unmodifiableList(new ArrayList<String>(location)) : Collections.<String>emptyList();
     return new Value(id, name, _location);
   }
 
@@ -133,10 +133,10 @@ public final class UserBuilder {
 
     private final String name;
 
-    private final List<Job.Locations> location;
+    private final List<String> location;
 
     private Value(@AutoMatter.Field("id") String id, @AutoMatter.Field("name") String name,
-        @AutoMatter.Field("location") List<Job.Locations> location) {
+        @AutoMatter.Field("location") List<String> location) {
       if (id == null) {
         throw new NullPointerException("id");
       }
@@ -145,7 +145,7 @@ public final class UserBuilder {
       }
       this.id = id;
       this.name = name;
-      this.location = (location != null) ? location : Collections.<Job.Locations>emptyList();
+      this.location = (location != null) ? location : Collections.<String>emptyList();
     }
 
     @AutoMatter.Field
@@ -162,7 +162,7 @@ public final class UserBuilder {
 
     @AutoMatter.Field
     @Override
-    public List<Job.Locations> location() {
+    public List<String> location() {
       return location;
     }
 

@@ -5,7 +5,7 @@ import io.norberg.automatter.AutoMatter;
 import java.util.List;
 
 @AutoMatter
-public interface Shelf {
+public interface JobPosts {
 
-    List<Job> shelfItems();
+    List<Job> jobPostItems();
 }

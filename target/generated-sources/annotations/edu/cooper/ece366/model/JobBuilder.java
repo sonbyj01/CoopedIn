@@ -5,13 +5,15 @@ import javax.annotation.processing.Generated;
 
 @Generated("io.norberg.automatter.processor.AutoMatterProcessor")
 public final class JobBuilder {
+  private String id;
+
   private boolean available;
 
   private String jobTitle;
 
   private String company;
 
-  private Job.Locations location;
+  private String location;
 
   private Job.JobType jobType;
 
@@ -19,6 +21,7 @@ public final class JobBuilder {
   }
 
   private JobBuilder(Job v) {
+    this.id = v.id();
     this.available = v.available();
     this.jobTitle = v.jobTitle();
     this.company = v.company();
@@ -27,11 +30,24 @@ public final class JobBuilder {
   }
 
   private JobBuilder(JobBuilder v) {
+    this.id = v.id;
     this.available = v.available;
     this.jobTitle = v.jobTitle;
     this.company = v.company;
     this.location = v.location;
     this.jobType = v.jobType;
+  }
+
+  public String id() {
+    return id;
+  }
+
+  public JobBuilder id(String id) {
+    if (id == null) {
+      throw new NullPointerException("id");
+    }
+    this.id = id;
+    return this;
   }
 
   public boolean available() {
@@ -67,11 +83,11 @@ public final class JobBuilder {
     return this;
   }
 
-  public Job.Locations location() {
+  public String location() {
     return location;
   }
 
-  public JobBuilder location(Job.Locations location) {
+  public JobBuilder location(String location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
@@ -92,7 +108,7 @@ public final class JobBuilder {
   }
 
   public Job build() {
-    return new Value(available, jobTitle, company, location, jobType);
+    return new Value(id, available, jobTitle, company, location, jobType);
   }
 
   public static JobBuilder from(Job v) {
@@ -104,20 +120,26 @@ public final class JobBuilder {
   }
 
   private static final class Value implements Job {
+    private final String id;
+
     private final boolean available;
 
     private final String jobTitle;
 
     private final String company;
 
-    private final Job.Locations location;
+    private final String location;
 
     private final Job.JobType jobType;
 
-    private Value(@AutoMatter.Field("available") boolean available,
+    private Value(@AutoMatter.Field("id") String id,
+        @AutoMatter.Field("available") boolean available,
         @AutoMatter.Field("jobTitle") String jobTitle, @AutoMatter.Field("company") String company,
-        @AutoMatter.Field("location") Job.Locations location,
+        @AutoMatter.Field("location") String location,
         @AutoMatter.Field("jobType") Job.JobType jobType) {
+      if (id == null) {
+        throw new NullPointerException("id");
+      }
       if (jobTitle == null) {
         throw new NullPointerException("jobTitle");
       }
@@ -130,11 +152,18 @@ public final class JobBuilder {
       if (jobType == null) {
         throw new NullPointerException("jobType");
       }
+      this.id = id;
       this.available = available;
       this.jobTitle = jobTitle;
       this.company = company;
       this.location = location;
       this.jobType = jobType;
+    }
+
+    @AutoMatter.Field
+    @Override
+    public String id() {
+      return id;
     }
 
     @AutoMatter.Field
@@ -157,7 +186,7 @@ public final class JobBuilder {
 
     @AutoMatter.Field
     @Override
-    public Job.Locations location() {
+    public String location() {
       return location;
     }
 
@@ -180,6 +209,9 @@ public final class JobBuilder {
         return false;
       }
       final Job that = (Job) o;
+      if (id != null ? !id.equals(that.id()) : that.id() != null) {
+        return false;
+      }
       if (available != that.available()) {
         return false;
       }
@@ -202,6 +234,7 @@ public final class JobBuilder {
     public int hashCode() {
       int result = 1;
       long temp;
+      result = 31 * result + (this.id != null ? this.id.hashCode() : 0);
       result = 31 * result + (this.available ? 1231 : 1237);
       result = 31 * result + (this.jobTitle != null ? this.jobTitle.hashCode() : 0);
       result = 31 * result + (this.company != null ? this.company.hashCode() : 0);
@@ -213,7 +246,8 @@ public final class JobBuilder {
     @Override
     public String toString() {
       return "Job{" +
-      "available=" + available +
+      "id=" + id +
+      ", available=" + available +
       ", jobTitle=" + jobTitle +
       ", company=" + company +
       ", location=" + location +

@@ -6,5 +6,5 @@ import java.util.List;
 
 @AutoMatter
 public interface Feed {
-    List<Shelf> shelves();
+    List<JobPosts> jobPostings();
 }

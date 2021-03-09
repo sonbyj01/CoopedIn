@@ -1,7 +1,7 @@
 package edu.cooper.ece366.store;
 
 import edu.cooper.ece366.model.Job;
-import edu.cooper.ece366.model.Job.Locations;
+//import edu.cooper.ece366.model.Job.Locations;
 import edu.cooper.ece366.model.JobBuilder;
 
 import java.util.List;
@@ -11,32 +11,67 @@ import java.util.stream.Collectors;
 
 public class JobStoreImpl implements JobStore {
 
-    private static final Map<Locations, Job> jobMap;
+    private static final Map<String, Job> jobMap;
 
     static {
         List<Job> jobs =
                 List.of(
                         new JobBuilder().jobType(Job.JobType.FullTime)
+                                .id("1")
                                 .company("Adobe")
                                 .jobTitle("R&D Engineer")
                                 .available(true)
-                                .location(Locations.NY).build(),
+                                .location("NY").build(),
                         new JobBuilder().jobType(Job.JobType.FullTime)
+                                .id("2")
+                                .company("Adobe")
+                                .jobTitle("SW Engineer")
+                                .available(true)
+                                .location("NY").build(),
+                        new JobBuilder().jobType(Job.JobType.FullTime)
+                                .id("3")
+                                .company("Adobe")
+                                .jobTitle("Marketing Manager")
+                                .available(true)
+                                .location("NY").build(),
+                        new JobBuilder().jobType(Job.JobType.FullTime)
+                                .id("4")
+                                .company("Adobe")
+                                .jobTitle("SW Engineer")
+                                .available(true)
+                                .location("NJ").build(),
+                        new JobBuilder().jobType(Job.JobType.Coop)
+                                .id("5")
                                 .company("Amazon")
                                 .jobTitle("Mechanical Engineer")
                                 .available(true)
-                                .location(Locations.CT).build(),
+                                .location("NJ").build(),
+                        new JobBuilder().jobType(Job.JobType.PartTime)
+                                .id("6")
+                                .company("Amazon")
+                                .jobTitle("Quality Engineer")
+                                .available(true)
+                                .location("NJ").build(),
+                        new JobBuilder().jobType(Job.JobType.Internship)
+                                .id("7")
+                                .company("Amazon")
+                                .jobTitle("Backend Engineer")
+                                .available(true)
+                                .location("NJ").build(),
                         new JobBuilder().jobType(Job.JobType.FullTime)
+                                .id("8")
                                 .company("NYU")
                                 .jobTitle("Professor")
                                 .available(true)
-                                .location(Locations.TX).build(),
+                                .location("NY").build(),
                         new JobBuilder().jobType(Job.JobType.FullTime)
+                                .id("9")
                                 .company("Aetna")
                                 .jobTitle("Lawyer")
                                 .available(true)
-                                .location(Locations.NJ).build());
-        jobMap = jobs.stream().collect(Collectors.toMap(Job::location, Function.identity()));
+                                .location("NJ").build());
+
+        jobMap = jobs.stream().collect(Collectors.toMap(Job::id, Function.identity()));
     }
 
     public JobStoreImpl() {}
@@ -45,9 +80,16 @@ public class JobStoreImpl implements JobStore {
     //public Job get(final Locations location) { return jobMap.get(location); }
 
     @Override
-    public List<Job> getByLocation(final Locations location) {
+    public List<Job> getByLocation(final String location) {
         return jobMap.values().stream()
                 .filter(jobs -> location.equals(jobs.location()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Job> getByCompany(final String company) {
+        return jobMap.values().stream()
+                .filter(jobs -> company.equals(jobs.company()))
                 .collect(Collectors.toList());
     }
 }

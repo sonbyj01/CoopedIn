@@ -7,6 +7,6 @@ import java.util.List;
 public interface JobStore {
 
     // Job getByType(Job.JobType jobType);
-    List<Job> getByLocation(Job.Locations location);
-
+    List<Job> getByCompany(String company);
+    List<Job> getByLocation(String location);
 }

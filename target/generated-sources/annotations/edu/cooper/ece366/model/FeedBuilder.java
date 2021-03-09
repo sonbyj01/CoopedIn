@@ -11,92 +11,92 @@ import javax.annotation.processing.Generated;
 
 @Generated("io.norberg.automatter.processor.AutoMatterProcessor")
 public final class FeedBuilder {
-  private List<Shelf> shelves;
+  private List<JobPosts> jobPostings;
 
   public FeedBuilder() {
   }
 
   private FeedBuilder(Feed v) {
-    List<Shelf> _shelves = v.shelves();
-    this.shelves = (_shelves == null) ? null : new ArrayList<Shelf>(_shelves);
+    List<JobPosts> _jobPostings = v.jobPostings();
+    this.jobPostings = (_jobPostings == null) ? null : new ArrayList<JobPosts>(_jobPostings);
   }
 
   private FeedBuilder(FeedBuilder v) {
-    this.shelves = (v.shelves == null) ? null : new ArrayList<Shelf>(v.shelves);
+    this.jobPostings = (v.jobPostings == null) ? null : new ArrayList<JobPosts>(v.jobPostings);
   }
 
-  public List<Shelf> shelves() {
-    if (this.shelves == null) {
-      this.shelves = new ArrayList<Shelf>();
+  public List<JobPosts> jobPostings() {
+    if (this.jobPostings == null) {
+      this.jobPostings = new ArrayList<JobPosts>();
     }
-    return shelves;
+    return jobPostings;
   }
 
-  public FeedBuilder shelves(List<? extends Shelf> shelves) {
-    return shelves((Collection<? extends Shelf>) shelves);
+  public FeedBuilder jobPostings(List<? extends JobPosts> jobPostings) {
+    return jobPostings((Collection<? extends JobPosts>) jobPostings);
   }
 
-  public FeedBuilder shelves(Collection<? extends Shelf> shelves) {
-    if (shelves == null) {
-      throw new NullPointerException("shelves");
+  public FeedBuilder jobPostings(Collection<? extends JobPosts> jobPostings) {
+    if (jobPostings == null) {
+      throw new NullPointerException("jobPostings");
     }
-    for (Shelf item : shelves) {
+    for (JobPosts item : jobPostings) {
       if (item == null) {
-        throw new NullPointerException("shelves: null item");
+        throw new NullPointerException("jobPostings: null item");
       }
     }
-    this.shelves = new ArrayList<Shelf>(shelves);
+    this.jobPostings = new ArrayList<JobPosts>(jobPostings);
     return this;
   }
 
-  public FeedBuilder shelves(Iterable<? extends Shelf> shelves) {
-    if (shelves == null) {
-      throw new NullPointerException("shelves");
+  public FeedBuilder jobPostings(Iterable<? extends JobPosts> jobPostings) {
+    if (jobPostings == null) {
+      throw new NullPointerException("jobPostings");
     }
-    if (shelves instanceof Collection) {
-      return shelves((Collection<? extends Shelf>) shelves);
+    if (jobPostings instanceof Collection) {
+      return jobPostings((Collection<? extends JobPosts>) jobPostings);
     }
-    return shelves(shelves.iterator());
+    return jobPostings(jobPostings.iterator());
   }
 
-  public FeedBuilder shelves(Iterator<? extends Shelf> shelves) {
-    if (shelves == null) {
-      throw new NullPointerException("shelves");
+  public FeedBuilder jobPostings(Iterator<? extends JobPosts> jobPostings) {
+    if (jobPostings == null) {
+      throw new NullPointerException("jobPostings");
     }
-    this.shelves = new ArrayList<Shelf>();
-    while (shelves.hasNext()) {
-      Shelf item = shelves.next();
+    this.jobPostings = new ArrayList<JobPosts>();
+    while (jobPostings.hasNext()) {
+      JobPosts item = jobPostings.next();
       if (item == null) {
-        throw new NullPointerException("shelves: null item");
+        throw new NullPointerException("jobPostings: null item");
       }
-      this.shelves.add(item);
+      this.jobPostings.add(item);
     }
     return this;
   }
 
   @SafeVarargs
   @SuppressWarnings("varargs")
-  public final FeedBuilder shelves(Shelf... shelves) {
-    if (shelves == null) {
-      throw new NullPointerException("shelves");
+  public final FeedBuilder jobPostings(JobPosts... jobPostings) {
+    if (jobPostings == null) {
+      throw new NullPointerException("jobPostings");
     }
-    return shelves(Arrays.asList(shelves));
+    return jobPostings(Arrays.asList(jobPostings));
   }
 
-  public FeedBuilder addShelf(Shelf shelf) {
-    if (shelf == null) {
-      throw new NullPointerException("shelf");
+  public FeedBuilder addJobPosting(JobPosts jobPosting) {
+    if (jobPosting == null) {
+      throw new NullPointerException("jobPosting");
     }
-    if (this.shelves == null) {
-      this.shelves = new ArrayList<Shelf>();
+    if (this.jobPostings == null) {
+      this.jobPostings = new ArrayList<JobPosts>();
     }
-    shelves.add(shelf);
+    jobPostings.add(jobPosting);
     return this;
   }
 
   public Feed build() {
-    List<Shelf> _shelves = (shelves != null) ? Collections.unmodifiableList(new ArrayList<Shelf>(shelves)) : Collections.<Shelf>emptyList();
-    return new Value(_shelves);
+    List<JobPosts> _jobPostings = (jobPostings != null) ? Collections.unmodifiableList(new ArrayList<JobPosts>(jobPostings)) : Collections.<JobPosts>emptyList();
+    return new Value(_jobPostings);
   }
 
   public static FeedBuilder from(Feed v) {
@@ -108,16 +108,16 @@ public final class FeedBuilder {
   }
 
   private static final class Value implements Feed {
-    private final List<Shelf> shelves;
+    private final List<JobPosts> jobPostings;
 
-    private Value(@AutoMatter.Field("shelves") List<Shelf> shelves) {
-      this.shelves = (shelves != null) ? shelves : Collections.<Shelf>emptyList();
+    private Value(@AutoMatter.Field("jobPostings") List<JobPosts> jobPostings) {
+      this.jobPostings = (jobPostings != null) ? jobPostings : Collections.<JobPosts>emptyList();
     }
 
     @AutoMatter.Field
     @Override
-    public List<Shelf> shelves() {
-      return shelves;
+    public List<JobPosts> jobPostings() {
+      return jobPostings;
     }
 
     public FeedBuilder builder() {
@@ -133,7 +133,7 @@ public final class FeedBuilder {
         return false;
       }
       final Feed that = (Feed) o;
-      if (shelves != null ? !shelves.equals(that.shelves()) : that.shelves() != null) {
+      if (jobPostings != null ? !jobPostings.equals(that.jobPostings()) : that.jobPostings() != null) {
         return false;
       }
       return true;
@@ -143,14 +143,14 @@ public final class FeedBuilder {
     public int hashCode() {
       int result = 1;
       long temp;
-      result = 31 * result + (this.shelves != null ? this.shelves.hashCode() : 0);
+      result = 31 * result + (this.jobPostings != null ? this.jobPostings.hashCode() : 0);
       return result;
     }
 
     @Override
     public String toString() {
       return "Feed{" +
-      "shelves=" + shelves +
+      "jobPostings=" + jobPostings +
       '}';
     }
   }

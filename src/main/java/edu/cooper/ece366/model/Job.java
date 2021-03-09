@@ -6,13 +6,15 @@ import java.util.List;
 
 @AutoMatter
 public interface Job {
+
+    // job id must be unique. Otherwise, we'll get an error when trying to hash with duplicate keys
+    String id();
+
+    // define job attributes
     boolean available();
     String jobTitle();
     String company();
-
-    //List<String> locations();
-    //String location();
-    Locations location();
+    String location();
 
     //application deadline? not sure the specific type though, suggest data format to link to maybe a calendar to send
     //an email notice to those who haven't finished applications (saved as draft in their application cache)
@@ -20,7 +22,6 @@ public interface Job {
 
     //job description -- a StringStream? can link this to front-end template
     JobType jobType();
-
 
     enum JobType{
         Internship,
@@ -30,10 +31,10 @@ public interface Job {
         SummerInternship
     }
 
-    enum Locations {
-        NY,
-        NJ,
-        CT,
-        TX
-    }
+    //enum Locations {
+    //    NY,
+    //    NJ,
+    //    CT,
+    //    TX
+    //}
 }
