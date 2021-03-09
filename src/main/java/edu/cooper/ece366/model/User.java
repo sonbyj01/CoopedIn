@@ -13,10 +13,10 @@ public interface User {
   //List<Job.Locations> location();
   List<String> location();
 
-  enum account_type {
+  /*enum account_type {
     Company,
     Member,
     Admin
-  }
+  }*/
 
 }
