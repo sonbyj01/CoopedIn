@@ -1,7 +1,7 @@
 package edu.cooper.ece366.store;
 
+import edu.cooper.ece366.model.Company;
 import edu.cooper.ece366.model.Job;
-//import edu.cooper.ece366.model.Job.Locations;
 import edu.cooper.ece366.model.JobBuilder;
 
 import java.util.List;
@@ -70,7 +70,7 @@ public class JobStoreImpl implements JobStore {
                                 .jobTitle("Lawyer")
                                 .available(true)
                                 .location("NJ").build());
-
+        //Ella: Monday afternoon: change the way job is mapped to hashmap
         jobMap = jobs.stream().collect(Collectors.toMap(Job::id, Function.identity()));
     }
 
@@ -86,8 +86,9 @@ public class JobStoreImpl implements JobStore {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<Job> getByCompany(final String company) {
+    //this is feed for the company
+
+    public List<Job> getByCompany(final Company company) {
         return jobMap.values().stream()
                 .filter(jobs -> company.equals(jobs.company()))
                 .collect(Collectors.toList());

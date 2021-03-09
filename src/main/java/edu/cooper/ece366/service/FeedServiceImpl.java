@@ -26,5 +26,20 @@ public class FeedServiceImpl implements FeedService {
 
         return new FeedBuilder().jobPostings(jobPostings).build();
     }
+    @Override
+    public Feed getFeedForCompanies(final Company company){
+        List<JobPosts> jobPostings =
+                company.name()
+                        .stream()
+                        .map(jobStore::getByCompany)
+                        .filter(list -> !list.isEmpty())
+                        .map(items ->
+                                new JobPostsBuilder()
+                                        .jobPostItems(items)
+                                        .build())
+                        .collect(Collectors.toList());
+
+        return new FeedBuilder().jobPostings(jobPostings).build();
+    }
 
 }
