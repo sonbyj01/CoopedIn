@@ -38,7 +38,7 @@ Direct message functions
 Web browser based interface first → mobile browsing
 
 #### 03.08.21 Sample outputs --> Filter job feed by user's location
-
+'''
 **get user with id 1**
 
 $ curl -s localhost:4567/user/1 | jq
@@ -156,4 +156,4 @@ $ curl -s localhost:4567/user/2/feed | jq
     }
   ]
 }
-
+'''
