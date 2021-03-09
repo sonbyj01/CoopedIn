@@ -10,7 +10,6 @@ edu\cooper\ece366\model\Company.class
 edu\cooper\ece366\model\User.class
 edu\cooper\ece366\store\JobStoreImpl.class
 edu\cooper\ece366\handler\Handler.class
-edu\cooper\ece366\model\User$account_type.class
 edu\cooper\ece366\model\JobBuilder.class
 edu\cooper\ece366\store\JobStore.class
 edu\cooper\ece366\model\FeedBuilder.class

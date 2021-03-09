@@ -88,7 +88,7 @@ public class JobStoreImpl implements JobStore {
 
     //this is feed for the company
 
-    public List<Job> getByCompany(final Company company) {
+    public List<Job> getByCompany(final String company) {
         return jobMap.values().stream()
                 .filter(jobs -> company.equals(jobs.company()))
                 .collect(Collectors.toList());
