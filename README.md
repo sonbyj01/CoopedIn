@@ -37,21 +37,123 @@ For the users, they can get positions recommendation feed based on their search 
 Direct message functions
 Web browser based interface first → mobile browsing
 
-03.08.21 Sample outputs
-curl -s localhost:4567/user/1
-{"id":"1","name":"John S.","location":["NY"]}
+#### 03.08.21 Sample outputs --> Filter job feed by user's location
+'''
+**get user with id 1**
 
-curl -s localhost:4567/user/2
-{"id":"2","name":"Mary S.","location":["NJ"]}
+$ curl -s localhost:4567/user/1 | jq
 
-curl -s localhost:4567/user/3
-{"id":"3","name":"Louis L.","location":["NY"]}
+{
+  "id": "1",
+  "name": "John S.",
+  "location": [
+    "NY"
+  ]
+}
 
-curl -s localhost:4567/user/1/feed
-{"shelves":[{"shelfItems":[{"available":true,"jobTitle":"R\u0026D Engineer","company":"Adobe","location":"NY","jobType":"FullTime"}]}]}
+**get user feed filtered by location**
 
-curl -s localhost:4567/user/2/feed
-{"shelves":[{"shelfItems":[{"available":true,"jobTitle":"Lawyer","company":"Aetna","location":"NJ","jobType":"FullTime"}]}]}
+$ curl -s localhost:4567/user/1/feed | jq
 
-curl -s localhost:4567/user/3/feed
-{"shelves":[{"shelfItems":[{"available":true,"jobTitle":"R\u0026D Engineer","company":"Adobe","location":"NY","jobType":"FullTime"}]}]}
+{
+  "jobPostings": [
+    {
+      "jobPostItems": [
+        {
+          "id": "1",
+          "available": true,
+          "jobTitle": "R&D Engineer",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "2",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "3",
+          "available": true,
+          "jobTitle": "Marketing Manager",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "8",
+          "available": true,
+          "jobTitle": "Professor",
+          "company": "NYU",
+          "location": "NY",
+          "jobType": "FullTime"
+        }
+      ]
+    }
+  ]
+}
+
+$ curl -s localhost:4567/user/2 | jq
+{
+  "id": "2",
+  "name": "Mary S.",
+  "location": [
+    "NJ"
+  ]
+}
+
+
+$ curl -s localhost:4567/user/2/feed | jq
+
+{
+  "jobPostings": [
+    {
+      "jobPostItems": [
+        {
+          "id": "4",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NJ",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "5",
+          "available": true,
+          "jobTitle": "Mechanical Engineer",
+          "company": "Amazon",
+          "location": "NJ",
+          "jobType": "Coop"
+        },
+        {
+          "id": "6",
+          "available": true,
+          "jobTitle": "Quality Engineer",
+          "company": "Amazon",
+          "location": "NJ",
+          "jobType": "PartTime"
+        },
+        {
+          "id": "7",
+          "available": true,
+          "jobTitle": "Backend Engineer",
+          "company": "Amazon",
+          "location": "NJ",
+          "jobType": "Internship"
+        },
+        {
+          "id": "9",
+          "available": true,
+          "jobTitle": "Lawyer",
+          "company": "Aetna",
+          "location": "NJ",
+          "jobType": "FullTime"
+        }
+      ]
+    }
+  ]
+}
+'''
