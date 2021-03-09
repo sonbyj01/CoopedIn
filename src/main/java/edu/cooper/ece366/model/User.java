@@ -10,7 +10,7 @@ public interface User {
 
   String name();
 
-  String location();
+  List<Job.Locations> location();
 
   enum account_type {
     Company,

@@ -1,12 +1,6 @@
 package edu.cooper.ece366.model;
 
 import io.norberg.automatter.AutoMatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated("io.norberg.automatter.processor.AutoMatterProcessor")
@@ -17,7 +11,9 @@ public final class JobBuilder {
 
   private String company;
 
-  private List<String> locations;
+  private Job.Locations location;
+
+  private Job.JobType jobType;
 
   public JobBuilder() {
   }
@@ -26,15 +22,16 @@ public final class JobBuilder {
     this.available = v.available();
     this.jobTitle = v.jobTitle();
     this.company = v.company();
-    List<String> _locations = v.locations();
-    this.locations = (_locations == null) ? null : new ArrayList<String>(_locations);
+    this.location = v.location();
+    this.jobType = v.jobType();
   }
 
   private JobBuilder(JobBuilder v) {
     this.available = v.available;
     this.jobTitle = v.jobTitle;
     this.company = v.company;
-    this.locations = (v.locations == null) ? null : new ArrayList<String>(v.locations);
+    this.location = v.location;
+    this.jobType = v.jobType;
   }
 
   public boolean available() {
@@ -70,78 +67,32 @@ public final class JobBuilder {
     return this;
   }
 
-  public List<String> locations() {
-    if (this.locations == null) {
-      this.locations = new ArrayList<String>();
-    }
-    return locations;
+  public Job.Locations location() {
+    return location;
   }
 
-  public JobBuilder locations(List<? extends String> locations) {
-    return locations((Collection<? extends String>) locations);
-  }
-
-  public JobBuilder locations(Collection<? extends String> locations) {
-    if (locations == null) {
-      throw new NullPointerException("locations");
-    }
-    for (String item : locations) {
-      if (item == null) {
-        throw new NullPointerException("locations: null item");
-      }
-    }
-    this.locations = new ArrayList<String>(locations);
-    return this;
-  }
-
-  public JobBuilder locations(Iterable<? extends String> locations) {
-    if (locations == null) {
-      throw new NullPointerException("locations");
-    }
-    if (locations instanceof Collection) {
-      return locations((Collection<? extends String>) locations);
-    }
-    return locations(locations.iterator());
-  }
-
-  public JobBuilder locations(Iterator<? extends String> locations) {
-    if (locations == null) {
-      throw new NullPointerException("locations");
-    }
-    this.locations = new ArrayList<String>();
-    while (locations.hasNext()) {
-      String item = locations.next();
-      if (item == null) {
-        throw new NullPointerException("locations: null item");
-      }
-      this.locations.add(item);
-    }
-    return this;
-  }
-
-  @SafeVarargs
-  @SuppressWarnings("varargs")
-  public final JobBuilder locations(String... locations) {
-    if (locations == null) {
-      throw new NullPointerException("locations");
-    }
-    return locations(Arrays.asList(locations));
-  }
-
-  public JobBuilder addLocation(String location) {
+  public JobBuilder location(Job.Locations location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
-    if (this.locations == null) {
-      this.locations = new ArrayList<String>();
+    this.location = location;
+    return this;
+  }
+
+  public Job.JobType jobType() {
+    return jobType;
+  }
+
+  public JobBuilder jobType(Job.JobType jobType) {
+    if (jobType == null) {
+      throw new NullPointerException("jobType");
     }
-    locations.add(location);
+    this.jobType = jobType;
     return this;
   }
 
   public Job build() {
-    List<String> _locations = (locations != null) ? Collections.unmodifiableList(new ArrayList<String>(locations)) : Collections.<String>emptyList();
-    return new Value(available, jobTitle, company, _locations);
+    return new Value(available, jobTitle, company, location, jobType);
   }
 
   public static JobBuilder from(Job v) {
@@ -159,21 +110,31 @@ public final class JobBuilder {
 
     private final String company;
 
-    private final List<String> locations;
+    private final Job.Locations location;
+
+    private final Job.JobType jobType;
 
     private Value(@AutoMatter.Field("available") boolean available,
         @AutoMatter.Field("jobTitle") String jobTitle, @AutoMatter.Field("company") String company,
-        @AutoMatter.Field("locations") List<String> locations) {
+        @AutoMatter.Field("location") Job.Locations location,
+        @AutoMatter.Field("jobType") Job.JobType jobType) {
       if (jobTitle == null) {
         throw new NullPointerException("jobTitle");
       }
       if (company == null) {
         throw new NullPointerException("company");
       }
+      if (location == null) {
+        throw new NullPointerException("location");
+      }
+      if (jobType == null) {
+        throw new NullPointerException("jobType");
+      }
       this.available = available;
       this.jobTitle = jobTitle;
       this.company = company;
-      this.locations = (locations != null) ? locations : Collections.<String>emptyList();
+      this.location = location;
+      this.jobType = jobType;
     }
 
     @AutoMatter.Field
@@ -196,8 +157,14 @@ public final class JobBuilder {
 
     @AutoMatter.Field
     @Override
-    public List<String> locations() {
-      return locations;
+    public Job.Locations location() {
+      return location;
+    }
+
+    @AutoMatter.Field
+    @Override
+    public Job.JobType jobType() {
+      return jobType;
     }
 
     public JobBuilder builder() {
@@ -222,7 +189,10 @@ public final class JobBuilder {
       if (company != null ? !company.equals(that.company()) : that.company() != null) {
         return false;
       }
-      if (locations != null ? !locations.equals(that.locations()) : that.locations() != null) {
+      if (location != null ? !location.equals(that.location()) : that.location() != null) {
+        return false;
+      }
+      if (jobType != null ? !jobType.equals(that.jobType()) : that.jobType() != null) {
         return false;
       }
       return true;
@@ -235,7 +205,8 @@ public final class JobBuilder {
       result = 31 * result + (this.available ? 1231 : 1237);
       result = 31 * result + (this.jobTitle != null ? this.jobTitle.hashCode() : 0);
       result = 31 * result + (this.company != null ? this.company.hashCode() : 0);
-      result = 31 * result + (this.locations != null ? this.locations.hashCode() : 0);
+      result = 31 * result + (this.location != null ? this.location.hashCode() : 0);
+      result = 31 * result + (this.jobType != null ? this.jobType.hashCode() : 0);
       return result;
     }
 
@@ -245,7 +216,8 @@ public final class JobBuilder {
       "available=" + available +
       ", jobTitle=" + jobTitle +
       ", company=" + company +
-      ", locations=" + locations +
+      ", location=" + location +
+      ", jobType=" + jobType +
       '}';
     }
   }

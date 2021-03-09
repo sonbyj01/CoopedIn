@@ -1,6 +1,12 @@
 package edu.cooper.ece366.model;
 
 import io.norberg.automatter.AutoMatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated("io.norberg.automatter.processor.AutoMatterProcessor")
@@ -9,7 +15,7 @@ public final class UserBuilder {
 
   private String name;
 
-  private String location;
+  private List<Job.Locations> location;
 
   public UserBuilder() {
   }
@@ -17,13 +23,14 @@ public final class UserBuilder {
   private UserBuilder(User v) {
     this.id = v.id();
     this.name = v.name();
-    this.location = v.location();
+    List<Job.Locations> _location = v.location();
+    this.location = (_location == null) ? null : new ArrayList<Job.Locations>(_location);
   }
 
   private UserBuilder(UserBuilder v) {
     this.id = v.id;
     this.name = v.name;
-    this.location = v.location;
+    this.location = (v.location == null) ? null : new ArrayList<Job.Locations>(v.location);
   }
 
   public String id() {
@@ -50,20 +57,67 @@ public final class UserBuilder {
     return this;
   }
 
-  public String location() {
+  public List<Job.Locations> location() {
+    if (this.location == null) {
+      this.location = new ArrayList<Job.Locations>();
+    }
     return location;
   }
 
-  public UserBuilder location(String location) {
+  public UserBuilder location(List<? extends Job.Locations> location) {
+    return location((Collection<? extends Job.Locations>) location);
+  }
+
+  public UserBuilder location(Collection<? extends Job.Locations> location) {
     if (location == null) {
       throw new NullPointerException("location");
     }
-    this.location = location;
+    for (Job.Locations item : location) {
+      if (item == null) {
+        throw new NullPointerException("location: null item");
+      }
+    }
+    this.location = new ArrayList<Job.Locations>(location);
     return this;
   }
 
+  public UserBuilder location(Iterable<? extends Job.Locations> location) {
+    if (location == null) {
+      throw new NullPointerException("location");
+    }
+    if (location instanceof Collection) {
+      return location((Collection<? extends Job.Locations>) location);
+    }
+    return location(location.iterator());
+  }
+
+  public UserBuilder location(Iterator<? extends Job.Locations> location) {
+    if (location == null) {
+      throw new NullPointerException("location");
+    }
+    this.location = new ArrayList<Job.Locations>();
+    while (location.hasNext()) {
+      Job.Locations item = location.next();
+      if (item == null) {
+        throw new NullPointerException("location: null item");
+      }
+      this.location.add(item);
+    }
+    return this;
+  }
+
+  @SafeVarargs
+  @SuppressWarnings("varargs")
+  public final UserBuilder location(Job.Locations... location) {
+    if (location == null) {
+      throw new NullPointerException("location");
+    }
+    return location(Arrays.asList(location));
+  }
+
   public User build() {
-    return new Value(id, name, location);
+    List<Job.Locations> _location = (location != null) ? Collections.unmodifiableList(new ArrayList<Job.Locations>(location)) : Collections.<Job.Locations>emptyList();
+    return new Value(id, name, _location);
   }
 
   public static UserBuilder from(User v) {
@@ -79,22 +133,19 @@ public final class UserBuilder {
 
     private final String name;
 
-    private final String location;
+    private final List<Job.Locations> location;
 
     private Value(@AutoMatter.Field("id") String id, @AutoMatter.Field("name") String name,
-        @AutoMatter.Field("location") String location) {
+        @AutoMatter.Field("location") List<Job.Locations> location) {
       if (id == null) {
         throw new NullPointerException("id");
       }
       if (name == null) {
         throw new NullPointerException("name");
       }
-      if (location == null) {
-        throw new NullPointerException("location");
-      }
       this.id = id;
       this.name = name;
-      this.location = location;
+      this.location = (location != null) ? location : Collections.<Job.Locations>emptyList();
     }
 
     @AutoMatter.Field
@@ -111,7 +162,7 @@ public final class UserBuilder {
 
     @AutoMatter.Field
     @Override
-    public String location() {
+    public List<Job.Locations> location() {
       return location;
     }
 

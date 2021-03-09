@@ -1,5 +1,6 @@
 package edu.cooper.ece366.store;
 
+import edu.cooper.ece366.model.Job;
 import edu.cooper.ece366.model.User;
 import edu.cooper.ece366.model.UserBuilder;
 import java.util.List;
@@ -16,17 +17,17 @@ public class UserStoreImpl implements UserStore {
                 new UserBuilder()
                     .id("1")
                     .name("John S.")
-                    .location("New York")
+                    .location(Job.Locations.NY)
                     .build(),
                 new UserBuilder()
                     .id("2")
                     .name("Mary S.")
-                    .location("New Jersey")
+                    .location(Job.Locations.NJ)
                     .build(),
                 new UserBuilder()
                     .id("3")
                     .name("Louis L.")
-                    .location("New York")
+                    .location(Job.Locations.NY)
                     .build())
             .stream()
             .collect(Collectors.toMap(User::id, Function.identity()));
