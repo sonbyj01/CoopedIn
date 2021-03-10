@@ -161,9 +161,11 @@ $ curl -s localhost:4567/user/2/feed | jq
 #### 03.09.21 Sample outputs --> Add new user
 
 $ curl -d "id=6&name=Pugsley&location=NJ" localhost:4567/newUser
+
 Success! New User Created with id = 6
 
 $ curl -s localhost:4567/user/6 | jq
+
 {
   "id": "6",
   "name": "Pugsley",
@@ -174,6 +176,7 @@ $ curl -s localhost:4567/user/6 | jq
 
 
 $ curl -s localhost:4567/user/6/feed | jq
+
 {
   "jobPostings": [
     {
