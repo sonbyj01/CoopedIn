@@ -1,8 +1,8 @@
 package edu.cooper.ece366.store;
 
-import edu.cooper.ece366.model.Job;
 import edu.cooper.ece366.model.User;
 import edu.cooper.ece366.model.UserBuilder;
+
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -48,12 +48,17 @@ public class UserStoreImpl implements UserStore {
     return userMap.get(id);
   }
 
-  public static void addUser(final String id, final String name, final String location) {
+  public static boolean addUser(final String id, final String name, final String location) {
+    if(userMap.containsKey(id)){
+      System.out.println("This id already existed! Create another one.");
+      return false;
+    }
     // create new user
     User newUser = new UserBuilder().id(id).name(name).location(location).build();
 
     // store new user
     userMap.put(id, newUser);
+    return false;
   }
 
 }
