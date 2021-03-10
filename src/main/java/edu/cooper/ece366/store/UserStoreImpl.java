@@ -47,4 +47,13 @@ public class UserStoreImpl implements UserStore {
   public User get(final String id) {
     return userMap.get(id);
   }
+
+  public static void addUser(final String id, final String name, final String location) {
+    // create new user
+    User newUser = new UserBuilder().id(id).name(name).location(location).build();
+
+    // store new user
+    userMap.put(id, newUser);
+  }
+
 }
