@@ -157,3 +157,72 @@ $ curl -s localhost:4567/user/2/feed | jq
   ]
 }
 '''
+
+#### 03.09.21 Sample outputs --> Add new user
+
+$ curl -d "id=6&name=Pugsley&location=NJ" localhost:4567/newUser
+
+Success! New User Created with id = 6
+
+$ curl -s localhost:4567/user/6 | jq
+
+{
+  "id": "6",
+  "name": "Pugsley",
+  "location": [
+    "NJ"
+  ]
+}
+
+
+$ curl -s localhost:4567/user/6/feed | jq
+
+{
+  "jobPostings": [
+    {
+      "jobPostItems": [
+        {
+          "id": "4",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NJ",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "5",
+          "available": true,
+          "jobTitle": "Mechanical Engineer",
+          "company": "Amazon",
+          "location": "NJ",
+          "jobType": "Coop"
+        },
+        {
+          "id": "6",
+          "available": true,
+          "jobTitle": "Quality Engineer",
+          "company": "Amazon",
+          "location": "NJ",
+          "jobType": "PartTime"
+        },
+        {
+          "id": "7",
+          "available": true,
+          "jobTitle": "Backend Engineer",
+          "company": "Amazon",
+          "location": "NJ",
+          "jobType": "Internship"
+        },
+        {
+          "id": "9",
+          "available": true,
+          "jobTitle": "Lawyer",
+          "company": "Aetna",
+          "location": "NJ",
+          "jobType": "FullTime"
+        }
+      ]
+    }
+  ]
+}
+
