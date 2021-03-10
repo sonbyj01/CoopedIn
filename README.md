@@ -158,7 +158,9 @@ $ curl -s localhost:4567/user/2/feed | jq
 }
 '''
 
-#### 03.09.21 Sample outputs --> Add new user
+#### 03.09.21 Sample outputs --> Add new user & job
+
+**Add new user**
 
 $ curl -d "id=6&name=Pugsley&location=NJ" localhost:4567/newUser
 
@@ -226,3 +228,17 @@ $ curl -s localhost:4567/user/6/feed | jq
   ]
 }
 
+**Add new job**
+
+$ curl -d "id=10&company=NYU&jobTitle=BiomedicalLabResearch&location=NY&jobType=Internship" localhost:4567/newJob
+Success! New Job Created with id =10
+
+**User id check**
+
+$ curl -d "id=6&name=Pugsley&location=NJ" localhost:4567/newUser
+Failed in creating a new user.
+
+**Job id check**
+
+$ curl -d "id=10&company=NYU&jobTitle=BiomedicalLabResearch&location=NY&jobType=Internship" localhost:4567/newJob
+Failed in adding new job.
