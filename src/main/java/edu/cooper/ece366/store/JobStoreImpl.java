@@ -1,8 +1,6 @@
 package edu.cooper.ece366.store;
 
-import edu.cooper.ece366.model.Company;
-import edu.cooper.ece366.model.Job;
-import edu.cooper.ece366.model.JobBuilder;
+import edu.cooper.ece366.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -92,5 +90,24 @@ public class JobStoreImpl implements JobStore {
         return jobMap.values().stream()
                 .filter(jobs -> company.equals(jobs.company()))
                 .collect(Collectors.toList());
+    }
+
+    public static boolean addJob(final String id, final String company,
+                              final String jobTitle, final String location,
+                              final boolean available, final Job.JobType jobType) {
+        // create new user
+        Job newJob = new JobBuilder()
+                .jobType(jobType)
+                .id(id)
+                .company(company)
+                .jobTitle(jobTitle)
+                .available(available)
+                .location(location)
+                .build();
+
+        // store new job
+        jobMap.put(id, newJob);
+
+        return (jobMap.containsKey(id));
     }
 }

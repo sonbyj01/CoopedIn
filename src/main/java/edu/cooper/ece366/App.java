@@ -3,6 +3,7 @@ package edu.cooper.ece366;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import edu.cooper.ece366.handler.Handler;
+import edu.cooper.ece366.model.Job;
 import edu.cooper.ece366.service.FeedServiceImpl;
 import edu.cooper.ece366.store.CompanyStoreImpl;
 import edu.cooper.ece366.store.JobStoreImpl;
@@ -10,6 +11,7 @@ import edu.cooper.ece366.store.UserStoreImpl;
 import io.norberg.automatter.gson.AutoMatterTypeAdapterFactory;
 import spark.Spark;
 
+import static edu.cooper.ece366.store.JobStoreImpl.addJob;
 import static edu.cooper.ece366.store.UserStoreImpl.addUser;
 import static spark.Spark.get;
 import static spark.Spark.initExceptionHandler;
@@ -29,7 +31,7 @@ public class App {
     Spark.get("/user/:userId/feed", (req, res) -> handler.getFeed(req), gson::toJson);
     Spark.get("/company/:companyId/feed", (req,res) -> handler.getFeedByCompany(req), gson::toJson);
 
-    // trying out a POST command to insert a new user
+    // POST command to insert a new user
     Spark.post("/newUser", (req, res) -> {
       String id = req.queryParams("id");
       String name = req.queryParams("name");
@@ -39,5 +41,20 @@ public class App {
       addUser(id, name, location);
       return ("Success! New User Created with id = " + id + "\n");
     });
+
+    // POST command to insert a new job
+    Spark.post("/newJob", (req, res) -> {
+      String id = req.queryParams("id");
+      String company = req.queryParams("company");
+      String jobTitle = req.queryParams("jobTitle");
+      String location = req.queryParams("location");
+      boolean available = Boolean.valueOf(req.queryParams("available"));
+      // String jobType = req.queryParams("jobType");
+      Job.JobType jobType = Job.JobType.valueOf(req.queryParams("jobType"));
+
+      // store
+      boolean keySuccess = addJob(id, company, jobTitle, location, available, jobType);
+      return ("New job added? " + keySuccess + " id = " + id + "\n");
+      });
   }
 }
