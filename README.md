@@ -158,6 +158,52 @@ $ curl -s localhost:4567/user/2/feed | jq
 }
 '''
 
+#### 03.10.21 Sample outputs --> Filter job feed by company
+
+$ curl -s localhost:4567/company/C1/feed | jq
+
+{
+  "jobPostings": [
+    {
+      "jobPostItems": [
+        {
+          "id": "1",
+          "available": true,
+          "jobTitle": "R&D Engineer",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "2",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "3",
+          "available": true,
+          "jobTitle": "Marketing Manager",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "4",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NJ",
+          "jobType": "FullTime"
+        }
+      ]
+    }
+  ]
+}
+
+
 #### 03.09.21 Sample outputs --> Add new user
 
 $ curl -d "id=6&name=Pugsley&location=NJ" localhost:4567/newUser
@@ -225,4 +271,66 @@ $ curl -s localhost:4567/user/6/feed | jq
     }
   ]
 }
+
+#### 03.10.21 Sample outputs --> Add new job
+
+$ curl -d "id=10&available=true&jobTitle=Test Job&company=Adobe&location=NJ&jobType=FullTime" localhost:4567/newJob
+
+New job added? true id = 10
+
+Check if added:
+
+$ curl -s localhost:4567/company/C1/feed | jq
+
+{
+  "jobPostings": [
+    {
+      "jobPostItems": [
+        {
+          "id": "1",
+          "available": true,
+          "jobTitle": "R&D Engineer",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "2",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "3",
+          "available": true,
+          "jobTitle": "Marketing Manager",
+          "company": "Adobe",
+          "location": "NY",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "4",
+          "available": true,
+          "jobTitle": "SW Engineer",
+          "company": "Adobe",
+          "location": "NJ",
+          "jobType": "FullTime"
+        },
+        {
+          "id": "10",
+          "available": true,
+          "jobTitle": "Test Job",
+          "company": "Adobe",
+          "location": "NJ",
+          "jobType": "FullTime"
+        }
+      ]
+    }
+  ]
+}
+
+NOTE last job is the previously added job!
+
 
