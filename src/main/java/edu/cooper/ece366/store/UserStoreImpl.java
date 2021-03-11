@@ -58,7 +58,7 @@ public class UserStoreImpl implements UserStore {
 
     // store new user
     userMap.put(id, newUser);
-    return false;
+    return true;
   }
 
 }
