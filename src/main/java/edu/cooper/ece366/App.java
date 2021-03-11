@@ -38,8 +38,8 @@ public class App {
       String location = req.queryParams("location");
 
       // store
-      addUser(id, name, location);
-      return ("Success! New User Created with id = " + id + "\n");
+      boolean keySuccess_user = addUser(id, name, location);
+      return (keySuccess_user ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
     });
 
     // POST command to insert a new job
@@ -48,13 +48,12 @@ public class App {
       String company = req.queryParams("company");
       String jobTitle = req.queryParams("jobTitle");
       String location = req.queryParams("location");
-      boolean available = Boolean.valueOf(req.queryParams("available"));
-      // String jobType = req.queryParams("jobType");
+
       Job.JobType jobType = Job.JobType.valueOf(req.queryParams("jobType"));
 
       // store
-      boolean keySuccess = addJob(id, company, jobTitle, location, available, jobType);
-      return ("New job added? " + keySuccess + " id = " + id + "\n");
+      boolean keySuccess = addJob(id, company, jobTitle, location, jobType);
+      return (keySuccess ? ("Success! New Job Created with id =" + id + "\n") : ("Failed in adding new job.\n"));
       });
   }
 }

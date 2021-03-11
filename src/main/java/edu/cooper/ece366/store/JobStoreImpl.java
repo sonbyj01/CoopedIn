@@ -94,17 +94,28 @@ public class JobStoreImpl implements JobStore {
 
     public static boolean addJob(final String id, final String company,
                               final String jobTitle, final String location,
-                              final boolean available, final Job.JobType jobType) {
+                              final Job.JobType jobType) {
         // create new user
+        if(jobMap.containsKey(id)) {
+            System.out.println("Create another id!");
+            return false;
+        }
+
         Job newJob = new JobBuilder()
                 .jobType(jobType)
                 .id(id)
                 .company(company)
                 .jobTitle(jobTitle)
-                .available(available)
+                .available(true)
                 .location(location)
                 .build();
-
+        /*3/10:I want to only compare the variables beside the id; so that this msg will show up when
+        the added new job has the other information (besides id) similar to one that already existed;
+        but it seems like we need to exclude id out of the job variables*/
+        /*if(jobMap.containsValue(newJob)){
+            System.out.println("Job already existed!");
+            return false;
+        }*/
         // store new job
         jobMap.put(id, newJob);
 
