@@ -26,6 +26,8 @@ public class FeedServiceImpl implements FeedService {
 
         return new FeedBuilder().jobPostings(jobPostings).build();
     }
+    //The get feed for user command can be called by: /"user"/#/"feed"
+    //Optional for clarity in output: | jq
     @Override
     public Feed getFeedForCompanies(final Company company){
         List<JobPosts> jobPostings =
