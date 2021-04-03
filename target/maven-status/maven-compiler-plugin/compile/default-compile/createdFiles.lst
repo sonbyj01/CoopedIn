@@ -5,6 +5,7 @@ edu\cooper\ece366\model\JobPosts.class
 edu\cooper\ece366\store\UserStoreImpl.class
 edu\cooper\ece366\model\JobBuilder$Value.class
 edu\cooper\ece366\model\UserBuilder.class
+edu\cooper\ece366\store\CompanyStore.class
 edu\cooper\ece366\App.class
 edu\cooper\ece366\model\Company.class
 edu\cooper\ece366\model\User.class
@@ -19,6 +20,7 @@ edu\cooper\ece366\model\Job$JobType.class
 edu\cooper\ece366\service\FeedServiceImpl.class
 edu\cooper\ece366\model\JobPostsBuilder$Value.class
 edu\cooper\ece366\store\UserStore.class
+edu\cooper\ece366\store\CompanyStoreImpl.class
 edu\cooper\ece366\model\JobPostsBuilder.class
 edu\cooper\ece366\model\UserBuilder$Value.class
 edu\cooper\ece366\service\FeedService.class

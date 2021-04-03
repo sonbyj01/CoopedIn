@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="MySQL" pattern="src:MySql.*" />
+</component>
