@@ -17,7 +17,8 @@ public class CoopedInJdbi {
     public static Jdbi create(String jdbcUrl) {
         Jdbi jdbi = Jdbi.create(jdbcUrl, "n1mda", "5uper5ecret");
         // I am having issues with this plugin
-        jdbi.installPlugins(new SqlObjectPlugin());
+        jdbi.installPlugin(new SqlObjectPlugin());
+        //jdbi.installPlugin(new JdbiPlugin.Singleton());
         jdbi.registerRowMapper(new UserRowMapper());
         return jdbi;
     }

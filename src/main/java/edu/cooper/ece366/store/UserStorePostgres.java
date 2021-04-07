@@ -7,11 +7,19 @@ public class UserStorePostgres implements UserStore {
 
     // for testing
     public static void main(String[] args) {
-        UserStorePostgres userStorePostgres = new UserStorePostgres(CoopedInJdbi.create("jdbc:postgresql://localhost:5432/c0mpany"));
+        UserStorePostgres userStorePostgres = new UserStorePostgres(
+                CoopedInJdbi.create("jdbc:postgresql://localhost:5432/c0mpany"));
+
         String userId = "1";
-        User user = userStorePostgres.get(userId);
-        System.out.println(user);
+        try {
+            User user = userStorePostgres.get(userId);
+            System.out.println("success");
+            System.out.println(user);
+        } catch (Exception e) {
+            System.out.println("Could not fetch user");
+        }
     }
+
     private final Jdbi jdbi;
 
     public UserStorePostgres (final Jdbi jdbi) {

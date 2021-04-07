@@ -5,10 +5,9 @@ import com.google.gson.GsonBuilder;
 import edu.cooper.ece366.handler.Handler;
 import edu.cooper.ece366.model.Job;
 import edu.cooper.ece366.service.FeedServiceImpl;
-import edu.cooper.ece366.store.CompanyStoreImpl;
-import edu.cooper.ece366.store.JobStoreImpl;
-import edu.cooper.ece366.store.UserStoreImpl;
+import edu.cooper.ece366.store.*;
 import io.norberg.automatter.gson.AutoMatterTypeAdapterFactory;
+import org.jdbi.v3.core.Jdbi;
 import spark.Spark;
 
 import static edu.cooper.ece366.store.JobStoreImpl.addJob;
@@ -23,8 +22,23 @@ public class App {
 
     initExceptionHandler(Throwable::printStackTrace);
 
-    Handler handler = new Handler(new UserStoreImpl(), new FeedServiceImpl(new JobStoreImpl()),
-      new CompanyStoreImpl());
+    String jdbcUrl = "jdbc:postgresql://localhost:5432/c0mpany";
+
+    Jdbi jdbi = CoopedInJdbi.create(jdbcUrl);
+    UserStorePostgres userStorePostgres = new UserStorePostgres(jdbi);
+
+    /*
+    Handler handler =
+            new Handler(
+                    new UserStoreImpl(),
+                    new FeedServiceImpl(new JobStoreImpl()),
+                    new CompanyStoreImpl());
+    */
+    Handler handler =
+            new Handler(
+                    userStorePostgres,
+                    new FeedServiceImpl(new JobStoreImpl()),
+                    new CompanyStoreImpl());
 
     get("/ping", (req, res) -> "OK");
     get("/user/:userId", (req, res) -> handler.getUser(req), gson::toJson);
