@@ -61,7 +61,26 @@
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.18.0</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-sqlobject</artifactId>
+      <version>3.18.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-core</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jdbi</groupId>
+      <artifactId>jdbi3-postgres</artifactId>
+      <version>3.18.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.18</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
