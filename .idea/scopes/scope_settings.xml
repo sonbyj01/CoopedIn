@@ -1,6 +1,0 @@
-<component name="DependencyValidationManager">
-  <state>
-    <option name="SKIP_IMPORT_STATEMENTS" value="true" />
-    <deny_rule from_scope="All" to_scope="MySQL" is_deny="false" />
-  </state>
-</component>
