@@ -2,13 +2,18 @@ package edu.cooper.ece366;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import edu.cooper.ece366.handler.Handler;
 import edu.cooper.ece366.model.Job;
+import edu.cooper.ece366.model.User;
 import edu.cooper.ece366.service.FeedServiceImpl;
 import edu.cooper.ece366.store.*;
 import io.norberg.automatter.gson.AutoMatterTypeAdapterFactory;
 import org.jdbi.v3.core.Jdbi;
 import spark.Spark;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static edu.cooper.ece366.store.JobStoreImpl.addJob;
 import static edu.cooper.ece366.store.UserStoreImpl.addUser;
@@ -49,11 +54,14 @@ public class App {
     Spark.post("/newUser", (req, res) -> {
       String id = req.queryParams("id");
       String name = req.queryParams("name");
+      //List<String> location = Arrays.asList(req.queryParamsValues("location"));
       String location = req.queryParams("location");
 
       // store
-      boolean keySuccess_user = addUser(id, name, location);
-      return (keySuccess_user ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
+      //boolean keySuccess_user = addUser(id, name, location);
+      //return (keySuccess_user ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
+      boolean newUserFlag = userStorePostgres.add(id, name, location);
+      return (newUserFlag ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
     });
 
     // POST command to insert a new job

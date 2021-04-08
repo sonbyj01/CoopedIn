@@ -48,6 +48,21 @@ public class UserStoreImpl implements UserStore {
     return userMap.get(id);
   }
 
+  @Override
+  //public User add(final String id, final String name, final String location) {return null;}
+  public boolean add(final String id, final String name, final String location) {
+    if(userMap.containsKey(id)){
+      System.out.println("This id already existed! Create another one.");
+      return false;
+    }
+    // create new user
+    User newUser = new UserBuilder().id(id).name(name).location(location).build();
+
+    // store new user
+    userMap.put(id, newUser);
+    return true;
+  }
+
   public static boolean addUser(final String id, final String name, final String location) {
     if(userMap.containsKey(id)){
       System.out.println("This id already existed! Create another one.");
