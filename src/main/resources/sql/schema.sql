@@ -19,3 +19,17 @@ create table if not exists job_types (
     primary key (job_id, job_type),
     foreign key (job_id) references jobs(id)
 );
+
+insert into jobs(id, company, location, job_title) values ('1', 'Adobe', 'NY', 'Engineer');
+insert into jobs(id, company, location, job_title) values ('2', 'Qualcomm', 'NJ', 'FPGA Developer');
+insert into jobs(id, company, location, job_title) values ('3', 'Peloton', 'NY', 'Backend Engineer');
+insert into jobs(id, company, location, job_title) values ('4', 'Facebook', 'NY', 'Scrum Master');
+insert into jobs(id, company, location, job_title) values ('5', 'Apple', 'NY', 'Graphics Designer');
+insert into jobs(id, company, location, job_title) values ('6', 'NVIDA', 'NJ', 'ML Engineer');
+
+insert into job_types(job_id, job_type) values ('1', 'FullTime');
+insert into job_types(job_id, job_type) values ('2', 'FullTime');
+insert into job_types(job_id, job_type) values ('3', 'Internship');
+insert into job_types(job_id, job_type) values ('4', 'PartTime');
+insert into job_types(job_id, job_type) values ('5', 'FullTime');
+insert into job_types(job_id, job_type) values ('6', 'FullTime');
