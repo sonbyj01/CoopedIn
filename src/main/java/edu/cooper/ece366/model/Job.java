@@ -22,7 +22,7 @@ public interface Job {
     //also maybe send a notice to the company so that they can change the availability of the job?
 
     //job description -- a StringStream? can link this to front-end template
-    JobType jobType();
+    List<JobType> jobType();
 
     enum JobType{
         Internship,

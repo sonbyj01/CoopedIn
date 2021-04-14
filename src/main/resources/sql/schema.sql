@@ -4,13 +4,6 @@ create table if not exists users (
     location varchar(2) not null
 );
 
-new JobBuilder().jobType(Job.JobType.FullTime)
-                                .id("1")
-                                .company("Adobe")
-                                .jobTitle("R&D Engineer")
-                                .available(true)
-                                .location("NY").build(),
-
 create table if not exists jobs (
     id varchar(3) primary key not null,
     company varchar(256) not null,
