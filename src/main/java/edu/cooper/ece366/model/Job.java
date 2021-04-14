@@ -2,6 +2,7 @@ package edu.cooper.ece366.model;
 
 import io.norberg.automatter.AutoMatter;
 
+import java.util.Arrays;
 import java.util.List;
 
 @AutoMatter
@@ -28,13 +29,12 @@ public interface Job {
         Coop,
         FullTime,
         PartTime,
-        SummerInternship
-    }
+        SummerInternship;
 
-    //enum Locations {
-    //    NY,
-    //    NJ,
-    //    CT,
-    //    TX
-    //}
+        public static JobType fromDbValue(String dbValue) {
+            return Arrays.asList(JobType.values()).stream()
+                    .filter(s -> dbValue.equalsIgnoreCase(s.name()))
+                    .findFirst().orElseThrow();
+            }
+    }
 }
