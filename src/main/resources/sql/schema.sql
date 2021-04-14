@@ -33,3 +33,5 @@ insert into job_types(job_id, job_type) values ('3', 'Internship');
 insert into job_types(job_id, job_type) values ('4', 'PartTime');
 insert into job_types(job_id, job_type) values ('5', 'FullTime');
 insert into job_types(job_id, job_type) values ('6', 'FullTime');
+
+/*select id, company, location, job_title from jobs j left join job_types jt on j.id = jt.job_id where j.id = '2';*/

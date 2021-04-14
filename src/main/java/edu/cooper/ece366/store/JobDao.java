@@ -1,5 +1,6 @@
 package edu.cooper.ece366.store;
 
+import edu.cooper.ece366.model.Job;
 import edu.cooper.ece366.model.User;
 import org.jdbi.v3.sqlobject.config.RegisterRowMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
@@ -8,14 +9,15 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 public interface JobDao {
     // data access object
-    @SqlQuery("select id, company, location, job_title from jobs j left join job_types jobTypes on j.id = jobTypes.job_id where j.id = :id ")
+    @SqlQuery("select id, company, location, job_title from jobs j left join job_types jt on j.id = jt.job_id where j.id = :id ")
 
     @RegisterRowMapper(CoopedInJdbi.UserRowMapper.class)
-    User getUser(@Bind("id") String id);
+    Job getJob(@Bind("id") String id);
 
-    @SqlUpdate("insert into users(id, name, location) values (:id, :name, :location)")
-    void insertUser(
+    @SqlUpdate("insert into jobs(id, company, location, job_title) values (:id, :company, :location, :job_title)")
+    void insertJob(
             @Bind("id") String id,
-            @Bind("name") String name,
-            @Bind("location") String location);
+            @Bind("company") String company,
+            @Bind("location") String location,
+            @Bind("job_title") String job_title);
 }
