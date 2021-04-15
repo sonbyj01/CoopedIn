@@ -47,8 +47,9 @@ public class CoopedInJdbi {
             String jobTitle = rs.getString("job_title");
             String company = rs.getString("company");
             String location = rs.getString("location");
-            //String jobType = rs.getString("job_type");
+            String jobType = rs.getString("job_type");
 
+            /*
             List<Job.JobType> jobType =
                     Optional.ofNullable(rs.getString("job_type"))
                             .map(
@@ -57,9 +58,9 @@ public class CoopedInJdbi {
                                                 .map(Job.JobType::fromDbValue)
                                                 .collect(Collectors.toList()))
                                                 .orElse(List.of());
-
+            */
             return new JobBuilder()
-                    .jobType(jobType)
+                    .jobType(List.of(Job.JobType.fromDbValue(jobType)))
                     .id(id)
                     .company(company)
                     .jobTitle(jobTitle)

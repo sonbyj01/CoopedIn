@@ -7,14 +7,17 @@ import org.jdbi.v3.sqlobject.customizer.Bind;
 import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
+import java.util.List;
+
 public interface JobDao {
     // data access object
-    //@SqlQuery("select id, company, location, job_title from jobs j left join job_types jt on j.id = jt.job_id where j.company = :company and j.id = :id")
-    @SqlQuery("select * from jobs where jobs.company = :company")
+    //@SqlQuery("select id, company, location, job_title, true as available from jobs j left join job_types jt on j.id = jt.job_id where j.company = :company")
+    //@SqlQuery("select * from jobs where jobs.company = :company")
+    @SqlQuery("select id, company, location, job_title, true as available, jt.job_type from jobs j left join job_types jt on j.id = jt.job_id where j.company = :company")
 
     @RegisterRowMapper(CoopedInJdbi.JobRowMapper.class)
     //Job getJob(@Bind("id") String id);
-    Job getByCompany(@Bind("company") String company);
+    List<Job> getByCompany(@Bind("company") String company);
 
     @SqlUpdate("insert into jobs(id, company, location, job_title) values (:id, :company, :location, :job_title)")
     void insertJob(
