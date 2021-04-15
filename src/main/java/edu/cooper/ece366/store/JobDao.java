@@ -9,10 +9,11 @@ import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 public interface JobDao {
     // data access object
-    @SqlQuery("select id, company, location, job_title from jobs j left join job_types jt on j.id = jt.job_id where j.id = :id ")
+    @SqlQuery("select id, company, location, job_title from jobs j left join job_types jt on j.id = jt.job_id where j.company = :company ")
 
     @RegisterRowMapper(CoopedInJdbi.UserRowMapper.class)
-    Job getJob(@Bind("id") String id);
+    //Job getJob(@Bind("id") String id);
+    Job getByCompany(@Bind("company") String company);
 
     @SqlUpdate("insert into jobs(id, company, location, job_title) values (:id, :company, :location, :job_title)")
     void insertJob(
