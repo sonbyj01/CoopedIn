@@ -17,8 +17,10 @@ public class JobStorePostgres implements JobStore {
                 CoopedInJdbi.create("jdbc:postgresql://localhost:5432/c0mpany"));
 
         String company = "Adobe";
+        String location = "NY";
         try {
-            List<Job> job = jobStorePostgres.getByCompany(company);
+            //List<Job> job = jobStorePostgres.getByCompany(company);
+            List<Job> job = jobStorePostgres.getByLocation(location);
             System.out.println("success");
             System.out.println(job);
         } catch (Exception e) {
@@ -41,7 +43,7 @@ public class JobStorePostgres implements JobStore {
 
     @Override
     public List<Job> getByLocation(String location) {
-        return null;
+        return (List<Job>) jdbi.withHandle(handle -> handle.attach(JobDao.class).getByCompany(location));
     }
 
     /*
