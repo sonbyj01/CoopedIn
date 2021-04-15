@@ -66,6 +66,41 @@ public class CoopedInJdbi {
                     .available(true)
                     .location(location).build();
         }
-    }
-}
 
+    }
+
+    /*
+    public static class JobRowMapper implements RowMapper<Job> {
+        @Override
+        public Job map(final ResultSet rs, final StatementContext ctx) throws SQLException {
+            List<Job> jobs;
+
+            while(rs.next()) {
+                String id = rs.getString("id");
+                String jobTitle = rs.getString("job_title");
+                String company = rs.getString("company");
+                String location = rs.getString("location");
+                //String jobType = rs.getString("job_type");
+
+                List<Job.JobType> jobType =
+                        Optional.ofNullable(rs.getString("job_type"))
+                                .map(jobTypeString ->
+                                                Arrays.stream(jobTypeString.split(",", -1))
+                                                .map(Job.JobType::fromDbValue)
+                                                .collect(Collectors.toList()))
+                                                .orElse(List.of());
+
+                Job job = JobBuilder()
+                        .jobType(jobType)
+                        .id(id)
+                        .company(company)
+                        .jobTitle(jobTitle)
+                        .available(true)
+                        .location(location).build();
+
+                jobs.add(job);
+            }
+        }
+    }
+    */
+}
