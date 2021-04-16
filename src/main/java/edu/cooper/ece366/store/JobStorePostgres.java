@@ -43,7 +43,7 @@ public class JobStorePostgres implements JobStore {
 
     @Override
     public List<Job> getByLocation(String location) {
-        return (List<Job>) jdbi.withHandle(handle -> handle.attach(JobDao.class).getByCompany(location));
+        return (List<Job>) jdbi.withHandle(handle -> handle.attach(JobDao.class).getByLocation(location));
     }
 
     /*

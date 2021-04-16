@@ -20,7 +20,6 @@ public interface JobDao {
     List<Job> getByCompany(@Bind("company") String company);
 
     @SqlQuery("select id, company, location, job_title, true as available, jt.job_type from jobs j left join job_types jt on j.id = jt.job_id where j.location = :location")
-
     @RegisterRowMapper(CoopedInJdbi.JobRowMapper.class)
     List<Job> getByLocation(@Bind("location") String location);
 
