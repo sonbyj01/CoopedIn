@@ -23,6 +23,8 @@ public interface JobDao {
     @RegisterRowMapper(CoopedInJdbi.JobRowMapper.class)
     List<Job> getByLocation(@Bind("location") String location);
 
+    // EC 4.18.21: Need to test functionality
+
     @SqlUpdate("insert into jobs(id, company, location, job_title) values (:id, :company, :location, :job_title)")
     void insertJob(
             @Bind("id") String id,

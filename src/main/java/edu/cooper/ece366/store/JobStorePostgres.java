@@ -10,8 +10,6 @@ public class JobStorePostgres implements JobStore {
 
     // for testing
     public static void main(String[] args) {
-        //UserStorePostgres userStorePostgres = new UserStorePostgres(
-                //CoopedInJdbi.create("jdbc:postgresql://localhost:5432/c0mpany"));
 
         JobStorePostgres jobStorePostgres = new JobStorePostgres(
                 CoopedInJdbi.create("jdbc:postgresql://localhost:5432/c0mpany"));
@@ -46,17 +44,4 @@ public class JobStorePostgres implements JobStore {
         return (List<Job>) jdbi.withHandle(handle -> handle.attach(JobDao.class).getByLocation(location));
     }
 
-    /*
-    @Override
-    public boolean add(String id, String name, String location) {
-        try {jdbi.useHandle(
-                handle -> {
-                    handle.attach(UserDao.class).insertUser(id, name, location);
-                });
-            return true;} catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-
-    }*/
 }

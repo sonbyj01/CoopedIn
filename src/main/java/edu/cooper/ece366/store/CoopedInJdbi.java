@@ -19,9 +19,7 @@ public class CoopedInJdbi {
 
     public static Jdbi create(String jdbcUrl) {
         Jdbi jdbi = Jdbi.create(jdbcUrl, "n1mda", "5uper5ecret");
-        // I am having issues with this plugin
         jdbi.installPlugin(new SqlObjectPlugin());
-        //jdbi.installPlugin(new JdbiPlugin.Singleton());
         jdbi.registerRowMapper(new UserRowMapper());
         return jdbi;
     }
@@ -46,16 +44,6 @@ public class CoopedInJdbi {
             String location = rs.getString("location");
             String jobType = rs.getString("job_type");
 
-            /*
-            List<Job.JobType> jobType =
-                    Optional.ofNullable(rs.getString("job_type"))
-                            .map(
-                                    jobTypeString ->
-                                            Arrays.stream(jobTypeString.split(",", -1))
-                                                .map(Job.JobType::fromDbValue)
-                                                .collect(Collectors.toList()))
-                                                .orElse(List.of());
-            */
             return new JobBuilder()
                     .jobType(List.of(Job.JobType.fromDbValue(jobType)))
                     .id(id)
@@ -78,38 +66,4 @@ public class CoopedInJdbi {
 
     }
 
-    /*
-    public static class JobRowMapper implements RowMapper<Job> {
-        @Override
-        public Job map(final ResultSet rs, final StatementContext ctx) throws SQLException {
-            List<Job> jobs;
-
-            while(rs.next()) {
-                String id = rs.getString("id");
-                String jobTitle = rs.getString("job_title");
-                String company = rs.getString("company");
-                String location = rs.getString("location");
-                //String jobType = rs.getString("job_type");
-
-                List<Job.JobType> jobType =
-                        Optional.ofNullable(rs.getString("job_type"))
-                                .map(jobTypeString ->
-                                                Arrays.stream(jobTypeString.split(",", -1))
-                                                .map(Job.JobType::fromDbValue)
-                                                .collect(Collectors.toList()))
-                                                .orElse(List.of());
-
-                Job job = JobBuilder()
-                        .jobType(jobType)
-                        .id(id)
-                        .company(company)
-                        .jobTitle(jobTitle)
-                        .available(true)
-                        .location(location).build();
-
-                jobs.add(job);
-            }
-        }
-    }
-    */
 }
