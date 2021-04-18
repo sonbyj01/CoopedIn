@@ -31,6 +31,8 @@ public class App {
 
     Jdbi jdbi = CoopedInJdbi.create(jdbcUrl);
     UserStorePostgres userStorePostgres = new UserStorePostgres(jdbi);
+    CompanyStorePostgres companyStorePostgres = new CompanyStorePostgres(jdbi);
+    JobStorePostgres jobStorePostgres = new JobStorePostgres(jdbi);
 
     /*
     Handler handler =
@@ -42,8 +44,8 @@ public class App {
     Handler handler =
             new Handler(
                     userStorePostgres,
-                    new FeedServiceImpl(new JobStoreImpl()),
-                    new CompanyStoreImpl());
+                    new FeedServiceImpl(jobStorePostgres),
+                    companyStorePostgres);
 
     get("/ping", (req, res) -> "OK");
     get("/user/:userId", (req, res) -> handler.getUser(req), gson::toJson);

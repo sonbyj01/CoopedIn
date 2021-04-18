@@ -20,16 +20,6 @@ public class UserStorePostgres implements UserStore {
             e.printStackTrace();
             System.out.println("Could not fetch user");
         }
-        /*
-        try {
-            User secondUser = add("2", "Min", "NY");
-            System.out.println(secondUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Could not insert into db table");
-        }
-
-         */
     }
 
     private final Jdbi jdbi;
@@ -53,12 +43,7 @@ public class UserStorePostgres implements UserStore {
             e.printStackTrace();
             return false;
         }
-        //jdbi.useHandle(
-        //        handle -> {
-        //            handle.attach(UserDao.class).insertUser(id, name, location);
-        //       });
-        //return get(id);
-        // Question for Ethan - why do we return a user? Can I get away with returning a true flag?
+
     }
 
 }
