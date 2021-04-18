@@ -1,9 +1,6 @@
 package edu.cooper.ece366.store;
 
-import edu.cooper.ece366.model.Job;
-import edu.cooper.ece366.model.JobBuilder;
-import edu.cooper.ece366.model.User;
-import edu.cooper.ece366.model.UserBuilder;
+import edu.cooper.ece366.model.*;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.spi.JdbiPlugin;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -66,6 +63,17 @@ public class CoopedInJdbi {
                     .jobTitle(jobTitle)
                     .available(true)
                     .location(location).build();
+        }
+
+    }
+
+    public static class CompanyRowMapper implements RowMapper<Company> {
+        @Override
+        public Company map(final ResultSet rs, final StatementContext ctx) throws SQLException {
+            String id = rs.getString("company_id");
+            String company_name = rs.getString("company_name");
+
+            return new CompanyBuilder().id(id).name(List.of(company_name)).build();
         }
 
     }
