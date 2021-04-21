@@ -84,6 +84,13 @@ public class JobStoreImpl implements JobStore {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Job> getByJobtype(final String jobtype) {
+        return jobMap.values().stream()
+                .filter(jobs -> Job.JobType.fromDbValue(jobtype).equals(jobs.location()))
+                .collect(Collectors.toList());
+    }
+
     //this is feed for the company
 
     public List<Job> getByCompany(final String company) {

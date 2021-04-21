@@ -51,6 +51,7 @@ public class App {
     get("/user/:userId", (req, res) -> handler.getUser(req), gson::toJson);
     Spark.get("/user/:userId/feed", (req, res) -> handler.getFeed(req), gson::toJson);
     Spark.get("/company/:companyId/feed", (req,res) -> handler.getFeedByCompany(req), gson::toJson);
+    Spark.get("/job/:job_type/feed", (req,res) -> handler.getFeedByJobType(req), gson::toJson);
 
     // POST command to insert a new user
     Spark.post("/newUser", (req, res) -> {

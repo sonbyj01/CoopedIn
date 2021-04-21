@@ -1,6 +1,7 @@
 package edu.cooper.ece366.service;
 
 import edu.cooper.ece366.model.*;
+import edu.cooper.ece366.store.JobDao;
 import edu.cooper.ece366.store.JobStore;
 
 import java.util.List;
@@ -26,6 +27,20 @@ public class FeedServiceImpl implements FeedService {
 
         return new FeedBuilder().jobPostings(jobPostings).build();
     }
+    @Override
+    public Feed getFeedJobtype (final List<String> types) {
+        List<JobPosts> jobPostings =
+                types.stream()
+                        .map(jobStore::getByJobtype)
+                        .filter(list -> !list.isEmpty())
+                        .map(items ->
+                            new JobPostsBuilder()
+                                    .jobPostItems(items)
+                                    .build())
+                        .collect(Collectors.toList());
+        return new FeedBuilder().jobPostings(jobPostings).build();
+    }
+
     //The get feed for user command can be called by: /"user"/#/"feed"
     //Optional for clarity in output: | jq
     @Override
@@ -43,5 +58,6 @@ public class FeedServiceImpl implements FeedService {
 
         return new FeedBuilder().jobPostings(jobPostings).build();
     }
+
 
 }

@@ -69,3 +69,4 @@ select id, company, location, job_title, true as available, jt.job_type from job
 /*drop table companies;*/
 
 select * from companies where company_name = 'NVIDIA';
+

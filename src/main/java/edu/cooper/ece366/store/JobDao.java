@@ -23,6 +23,12 @@ public interface JobDao {
     @RegisterRowMapper(CoopedInJdbi.JobRowMapper.class)
     List<Job> getByLocation(@Bind("location") String location);
 
+    //@SqlQuery("select id, company, location, job_title, true as available, jt.job_type from jobs j left join job_types jt on j.id = jt.job_id where jt.job_type = :job_type")
+    @SqlQuery("select id, company, location, job_title, true as available, jt.job_type from jobs j left join job_types jt on j.id = jt.job_id where cast(jt.job_type as varchar) = cast(:job_type as varchar)")
+    @RegisterRowMapper(CoopedInJdbi.JobRowMapper.class)
+    List<Job> getByJobtype(@Bind("job_type") String job_type);
+
+
     // EC 4.18.21: Need to test functionality
 
     @SqlUpdate("insert into jobs(id, company, location, job_title) values (:id, :company, :location, :job_title)")
@@ -31,4 +37,6 @@ public interface JobDao {
             @Bind("company") String company,
             @Bind("location") String location,
             @Bind("job_title") String job_title);
+
+
 }

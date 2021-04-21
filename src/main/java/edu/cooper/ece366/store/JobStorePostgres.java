@@ -16,9 +16,12 @@ public class JobStorePostgres implements JobStore {
 
         String company = "Adobe";
         String location = "NY";
+        String job_type = "FullTime";
+
         try {
             //List<Job> job = jobStorePostgres.getByCompany(company);
-            List<Job> job = jobStorePostgres.getByLocation(location);
+            //List<Job> job = jobStorePostgres.getByLocation(location);
+            List<Job> job = jobStorePostgres.getByJobtype(job_type);
             System.out.println("success");
             System.out.println(job);
         } catch (Exception e) {
@@ -42,6 +45,11 @@ public class JobStorePostgres implements JobStore {
     @Override
     public List<Job> getByLocation(String location) {
         return (List<Job>) jdbi.withHandle(handle -> handle.attach(JobDao.class).getByLocation(location));
+    }
+
+    @Override
+    public List<Job> getByJobtype(String jobType) {
+        return (List<Job>) jdbi.withHandle(handle -> handle.attach(JobDao.class).getByJobtype(jobType));
     }
 
 }

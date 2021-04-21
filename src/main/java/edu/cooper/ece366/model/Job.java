@@ -28,8 +28,7 @@ public interface Job {
         Internship,
         Coop,
         FullTime,
-        PartTime,
-        SummerInternship;
+        PartTime;
 
         public static JobType fromDbValue(String dbValue) {
             return Arrays.asList(JobType.values()).stream()
