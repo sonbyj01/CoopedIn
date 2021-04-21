@@ -2,11 +2,16 @@ package edu.cooper.ece366.handler;
 
 import edu.cooper.ece366.model.Company;
 import edu.cooper.ece366.model.Feed;
+import edu.cooper.ece366.model.Job;
 import edu.cooper.ece366.model.User;
 import edu.cooper.ece366.service.FeedService;
 import edu.cooper.ece366.store.CompanyStore;
+import edu.cooper.ece366.store.JobStore;
 import edu.cooper.ece366.store.UserStore;
 import spark.Request;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Handler {
 
@@ -33,6 +38,16 @@ public class Handler {
     User user = getUser(request);
     return feedService.getFeedForUser(user);
   }
+
+
+  public Feed getFeedByJobType(Request request) {
+    String jt = request.params(":jobtype");
+    List<String> types = new ArrayList<String>();
+    types.add(jt);
+    return feedService.getFeedJobtype(types);
+  }
+
+
 
   public Feed getFeedByCompany(Request request) {
     Company company = getCompany(request);
