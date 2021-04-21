@@ -41,13 +41,12 @@ public class Handler {
 
 
   public Feed getFeedByJobType(Request request) {
-    String jt = request.params(":jobtype");
+    String jt = request.params(":job_type");
     List<String> types = new ArrayList<String>();
     types.add(jt);
     return feedService.getFeedJobtype(types);
+    //return feedService.getFeedJobtype(List.of(jt));
   }
-
-
 
   public Feed getFeedByCompany(Request request) {
     Company company = getCompany(request);

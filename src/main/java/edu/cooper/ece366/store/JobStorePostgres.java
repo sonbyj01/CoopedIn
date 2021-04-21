@@ -16,9 +16,12 @@ public class JobStorePostgres implements JobStore {
 
         String company = "Adobe";
         String location = "NY";
+        String job_type = "FullTime";
+
         try {
             //List<Job> job = jobStorePostgres.getByCompany(company);
-            List<Job> job = jobStorePostgres.getByLocation(location);
+            //List<Job> job = jobStorePostgres.getByLocation(location);
+            List<Job> job = jobStorePostgres.getByJobtype(job_type);
             System.out.println("success");
             System.out.println(job);
         } catch (Exception e) {
