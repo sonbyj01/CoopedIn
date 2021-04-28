@@ -247,3 +247,26 @@ $ curl -d "id=10&company=NYU&jobTitle=BiomedicalLabResearch&location=NY&jobType=
 Failed in adding new job.
 
 Test Commit
+
+Get feed by job type example:
+
+curl -s localhost:4567/job/Internship/feed | jq
+
+{
+"jobPostings": [
+{
+"jobPostItems": [
+{
+"id": "4",
+"available": true,
+"jobTitle": "Scrum Master",
+"company": "Facebook",
+"location": "NY",
+"jobType": [
+"PartTime"
+]
+}
+]
+}
+]
+}

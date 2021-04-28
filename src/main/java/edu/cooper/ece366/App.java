@@ -2,14 +2,18 @@ package edu.cooper.ece366;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import edu.cooper.ece366.handler.Handler;
 import edu.cooper.ece366.model.Job;
+import edu.cooper.ece366.model.User;
 import edu.cooper.ece366.service.FeedServiceImpl;
-import edu.cooper.ece366.store.CompanyStoreImpl;
-import edu.cooper.ece366.store.JobStoreImpl;
-import edu.cooper.ece366.store.UserStoreImpl;
+import edu.cooper.ece366.store.*;
 import io.norberg.automatter.gson.AutoMatterTypeAdapterFactory;
+import org.jdbi.v3.core.Jdbi;
 import spark.Spark;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static edu.cooper.ece366.store.JobStoreImpl.addJob;
 import static edu.cooper.ece366.store.UserStoreImpl.addUser;
@@ -23,23 +27,44 @@ public class App {
 
     initExceptionHandler(Throwable::printStackTrace);
 
-    Handler handler = new Handler(new UserStoreImpl(), new FeedServiceImpl(new JobStoreImpl()),
-      new CompanyStoreImpl());
+    String jdbcUrl = "jdbc:postgresql://localhost:5432/c0mpany";
+
+    Jdbi jdbi = CoopedInJdbi.create(jdbcUrl);
+    UserStorePostgres userStorePostgres = new UserStorePostgres(jdbi);
+    CompanyStorePostgres companyStorePostgres = new CompanyStorePostgres(jdbi);
+    JobStorePostgres jobStorePostgres = new JobStorePostgres(jdbi);
+
+    /*
+    Handler handler =
+            new Handler(
+                    new UserStoreImpl(),
+                    new FeedServiceImpl(new JobStoreImpl()),
+                    new CompanyStoreImpl());
+    */
+    Handler handler =
+            new Handler(
+                    userStorePostgres,
+                    new FeedServiceImpl(jobStorePostgres),
+                    companyStorePostgres);
 
     get("/ping", (req, res) -> "OK");
     get("/user/:userId", (req, res) -> handler.getUser(req), gson::toJson);
     Spark.get("/user/:userId/feed", (req, res) -> handler.getFeed(req), gson::toJson);
     Spark.get("/company/:companyId/feed", (req,res) -> handler.getFeedByCompany(req), gson::toJson);
+    Spark.get("/job/:job_type/feed", (req,res) -> handler.getFeedByJobType(req), gson::toJson);
 
     // POST command to insert a new user
     Spark.post("/newUser", (req, res) -> {
       String id = req.queryParams("id");
       String name = req.queryParams("name");
+      //List<String> location = Arrays.asList(req.queryParamsValues("location"));
       String location = req.queryParams("location");
 
       // store
-      boolean keySuccess_user = addUser(id, name, location);
-      return (keySuccess_user ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
+      //boolean keySuccess_user = addUser(id, name, location);
+      //return (keySuccess_user ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
+      boolean newUserFlag = userStorePostgres.add(id, name, location);
+      return (newUserFlag ? ("Success! New User Created with id = " + id + "\n") : ("Failed in creating a new user.\n"));
     });
 
     // POST command to insert a new job
